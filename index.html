@@ -1,21 +1,117 @@
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
   <head>
+    <title>Mobile Image Classifier</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/index.css">
+
     <script src="https://unpkg.com/@tensorflow/tfjs"></script>
     <script src="https://unpkg.com/@tensorflow-models/mobilenet"></script>
     <script src="https://unpkg.com/@tensorflow-models/knn-classifier"></script>
   </head>
 
   <body>
-    <button id="class-a">Add A</button>
-    <button id="class-b">Add B</button>
-    <button id="class-c">Add C</button>
-    <button id="class-no-action">No action</button>
+    <div class="w3-top">
+      <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+        <a
+            id="open-sidebar"
+            class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1"
+        >
+          <i class="fa fa-bars"></i>
+        </a>
 
-    <div id="console"></div>
+        <a href="http://sk-solutions.pl" class="w3-bar-item w3-button w3-theme-l1 logo-item">
+          <img src="assets/logo.png" alt="SK Solutions">
+        </a>
 
-    <video autoplay playsinline muted id="webcam" width="224" height="224">
-    </video>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+      </div>
+    </div>
 
-    <script src="index.js"></script>
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+      <a class="close-sidebar w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+        <i class="fa fa-remove"></i>
+      </a>
+      <h4 class="w3-bar-item"><b>Menu</b></h4>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">About</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">News</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="#">Contact</a>
+    </nav>
+
+    <div class="close-sidebar w3-overlay w3-hide-large" style="cursor:pointer"
+        title="close side menu"
+        id="myOverlay"></div>
+
+    <div class="w3-main" style="margin-left:250px">
+      <div class="w3-row w3-padding-64">
+        <div class="w3-container">
+          <h1 class="w3-text-teal">Mobile Image Classifier</h1>
+
+          <p>
+            This small single page application is created to demonstrate the powerful tool <a
+              href="https://www.tensorflow.org/js/">Tensorflow.js</a>. The tool allows running machine learning models
+            in the browser.
+          </p>
+
+          <p>
+            In the next section, you can see the webcam preview with four buttons and the predicted result. The current
+            solution allows to classify up to four classes. When you present an object to the webcam, click a class
+            button to classify the object. After each click, the model will be taught to recognize this element. After
+            assigning at least one class, the model will try to predict what is visible on the webcam.
+          </p>
+        </div>
+      </div>
+
+      <div class="w3-row w3-padding-64">
+        <div class="w3-container">
+          <h2 class="w3-text-teal">Webcam Preview & Classification</h2>
+
+          <p class="webcam-preview-container">
+            <video poster="assets/webcam-cover.jpg" autoplay playsinline muted id="webcam-preview" class="w3-border"
+                width="512" height="288">
+            </video>
+          </p>
+
+          <p class="classify-buttons">
+            <button class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge" id="class-a">
+              Add to class "A"
+            </button>
+            <button class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge" id="class-b">
+              Add to class "B"
+            </button>
+            <button class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge" id="class-c">
+              Add to class "C"
+            </button>
+            <button class="w3-btn w3-white w3-border w3-border-green w3-round-xlarge" id="class-no-action">
+              Add to "Empty view"
+            </button>
+          </p>
+
+          <p>
+            <span id="result-preview">
+              Predicted class: - with confidence: -
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <div class="w3-container w3-theme-l1">
+          <p>Powered by <a href="http://sk-solutions.pl" target="_blank">SK Solutions</a></p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="assets/sidebar.js"></script>
+    <script src="assets/app.js"></script>
   </body>
 </html>
